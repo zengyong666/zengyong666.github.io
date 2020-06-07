@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 20px;
+        }
+
+        .box {
+            width: 600px;
+            height: 40px;
+            margin: 200px auto;
+            position: relative;
+        }
+
+        #txt {
+            width: 498px;
+            height: 38px;
+            border: 1px solid red;
+            font-size: 20px;
+            vertical-align: middle;
+            outline: none;
+        }
+
+        #search {
+            width: 100px;
+            height: 40px;
+            background-color: red;
+            vertical-align: middle;
+        }
+
+        #keywords {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: rgb(12, 255, 24);
+            list-style: none;
+            width: 500px;
+        }
+
+        li {
+            line-height: 24px;
+        }
+
+        /* li:hover {
+            background-color: red;
+        } */
+    </style>
+    <script>
+        window.onload = function () {
+            let keywords = ["波波", "力气", "波波与力气的故事", "夏东海同学", "波波是个大佬", "群姐牛逼", "群姐主播生涯", "波波你号没了", "班长的爱情故事", "班长", "社会王", "隔壁老王"];
+            let a=document.querySelector('input');
+            let b =document.querySelector('#keywords');
+            a.onkeyup=function(){
+                b.innerHTML='';
+                if(a.value==''){
+                    return;
+                }
+                for(let i=0;i<keywords.length;i++){
+                    if(keywords[i].indexOf(a.value)!=-1){
+                        let newbox=document.createElement('li');
+                        newbox.innerText=keywords[i];
+                        b.appendChild(newbox);
+                        let oldcolor;
+                        newbox.onmouseover=function(){
+                            oldcolor=newbox.style.backgroundColor;
+                            newbox.style.backgroundColor='cyan';
+                        }
+                        newbox.onmouseout=function(){
+                            newbox.style.backgroundColor=oldcolor;
+                        }
+                        newbox.onclick=function(){
+                            a.value=newbox.innerText;
+                            b.innerHTML='';
+                        }
+                    }
+                }
+            }
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="top">
+            <input type="text" id="txt" /><input type="button" value="search" id="search" />
+        </div>
+        <ul id="keywords"></ul>
+    </div>
+</body>
+
+</html>
